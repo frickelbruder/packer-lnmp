@@ -1,4 +1,9 @@
 {
+    "variables": {
+        "cloud_token": "{{env `VAGRANT_CLOUD_TOKEN`}}",
+        "cloud_repo": "frickelbruder/lnmp-stack",
+        "version": "1.0.1"
+    } ,
     "provisioners": [
         {
             "type": "shell",
@@ -84,5 +89,24 @@
             "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
             "virtualbox_version_file": ".vbox_version"
         }
+    ],
+    "post-processors": [
+      [
+          {
+              "type": "vagrant",
+              "compression_level": 9,
+              "output": "vagrant/clean.{{.Provider}}.box",
+              "keep_input_artifact": false,
+              "vagrantfile_template": "parent/_Vagrantfile"
+              
+          },
+          {
+              "type": "vagrant-cloud",
+              "box_tag": "{{user `cloud_repo`}}",
+              "access_token": "{{user `cloud_token`}}",
+              "version": "{{user `version`}}",
+              "version_description": "automated build"
+          }
+      ]
     ]
 }
