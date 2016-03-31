@@ -2,6 +2,10 @@
 
 ECHOWRAPPER="==============================================\n\n%s\n\n==============================================\n"
 
+#GIT
+printf $ECHOWRAPPER "Installing GIT"
+apt-get install -y git 
+
 #MySQL-Database - percona flavor
 printf $ECHOWRAPPER "Installing Percona Mysql"
 wget https://repo.percona.com/apt/percona-release_0.1-3.$(lsb_release -sc)_all.deb
