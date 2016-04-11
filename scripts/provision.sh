@@ -26,6 +26,8 @@ rm nginx_signing.key
 
 apt-get update
 apt-get install -y nginx
+##Lets run as www-data, as every good webserver should do
+sed -i 's~user  nginx;~user  www-data;~'  /etc/nginx/nginx.conf
 
 #PHP
 printf $ECHOWRAPPER "Installing PHP"
@@ -65,6 +67,11 @@ debconf-set-selections <<< 'phpmyadmin phpmyadmin/reconfigure-webserver multisel
 debconf-set-selections <<< 'phpmyadmin phpmyadmin/internal/skip-preseed boolean true '
 printf $ECHOWRAPPER "Doing the install"
 apt-get install -y phpmyadmin
+sed -i 's~ //\(.*AllowNoPassword.*\)~\1~1' /etc/phpmyadmin/config.inc.php
+sed -i "s~'cookie';~'config';~1" /etc/phpmyadmin/config.inc.php
+sed -i "s~= \$dbuser;~= 'root';~1" /etc/phpmyadmin/config.inc.php
+sed -i "s~= \$dbpass;~= '';~1" /etc/phpmyadmin/config.inc.php
+sed -i "s~= \$dbserver;~= '127.0.0.1';~1" /etc/phpmyadmin/config.inc.php
 
 #Ruby (required for compass)
 printf $ECHOWRAPPER "Installing Ruby"
