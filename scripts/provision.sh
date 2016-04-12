@@ -31,7 +31,7 @@ sed -i 's~user  nginx;~user  www-data;~'  /etc/nginx/nginx.conf
 
 #PHP
 printf $ECHOWRAPPER "Installing PHP"
-apt-get install -y php5-fpm php5-cli php5-mysql php5-imagick php5-gd php5-xdebug php-pear php5-dev
+apt-get install -y php5-fpm php5-cli php5-mysql php5-imagick php5-gd php5-xdebug php-pear php5-dev php5-mcrypt
 
 
 ##PHPDEVELOPMENT
