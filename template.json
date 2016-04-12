@@ -2,7 +2,7 @@
     "variables": {
         "cloud_token": "{{env `VAGRANT_CLOUD_TOKEN`}}",
         "cloud_repo": "frickelbruder/lnmp-stack",
-        "version": "1.0.2",
+        "version": "1.0.3",
         "version_description": "fixed permission issues, nologin pma"
     } ,
     "provisioners": [
