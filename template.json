@@ -2,8 +2,8 @@
     "variables": {
         "cloud_token": "{{env `VAGRANT_CLOUD_TOKEN`}}",
         "cloud_repo": "frickelbruder/lnmp-stack",
-        "version": "1.0.4",
-        "version_description": "Standard /vargrant-dir with symlink to /var/www/project"
+        "version": "1.0.5",
+        "version_description": "Fix composer install"
     } ,
     "provisioners": [
         {
