@@ -49,6 +49,7 @@ php composer-setup.php
 php -r "unlink('composer-setup.php');"
 mv composer.phar /usr/local/bin/composer.phar
 ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
+php5dismod -s cli xdebug
 
 ###PHPAB
 printf $ECHOWRAPPER "Installing phpab"

@@ -2,8 +2,8 @@
     "variables": {
         "cloud_token": "{{env `VAGRANT_CLOUD_TOKEN`}}",
         "cloud_repo": "frickelbruder/lnmp-stack",
-        "version": "1.0.5",
-        "version_description": "Fix composer install"
+        "version": "1.0.7",
+        "version_description": "Minor tweak, faster composer with disabling xdebug on cli"
     } ,
     "provisioners": [
         {
