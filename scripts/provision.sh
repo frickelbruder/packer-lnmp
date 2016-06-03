@@ -29,6 +29,8 @@ apt-get install -y nginx
 ##Lets run as www-data, as every good webserver should do
 sed -i 's~user  nginx;~user  www-data;~'  /etc/nginx/nginx.conf
 
+usermod -g www-data vagrant
+
 #PHP
 printf $ECHOWRAPPER "Installing PHP"
 apt-get install -y php5-fpm php5-cli php5-mysql php5-imagick php5-gd php5-xdebug php-pear php5-dev php5-mcrypt
@@ -75,7 +77,18 @@ sed -i "s~= \$dbserver;~= '127.0.0.1';~1" /etc/phpmyadmin/config.inc.php
 
 #Ruby (required for compass)
 printf $ECHOWRAPPER "Installing Ruby"
-apt-get -y install ruby ruby-dev
+gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
+curl -sSL https://get.rvm.io | bash -s stable
+source /etc/profile.d/rvm.sh
+rvm requirements
+rvm install ruby-head
+rvm use ruby-head --default 
+
+usermod -a -G rvm vagrant
+echo ". /etc/profile.d/rvm.sh" >> ~/.bashrc
+echo ". /etc/profile.d/rvm.sh" >> ~vagrant/.bashrc
+
+#apt-get -y install ruby ruby-dev
 
 #Compass
 printf $ECHOWRAPPER "Installing Compass"
